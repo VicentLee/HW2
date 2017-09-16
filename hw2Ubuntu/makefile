@@ -22,6 +22,6 @@ obj/%.o: src/%.c
 	$(CXX) $(CFLAGS) $(INCLUDE) -o $@ -c $<
 
 clean:
-	rm -rf obj/*
+	rm -rf obj/* $(TARGET)
 
 new: clean $(TARGET) 
