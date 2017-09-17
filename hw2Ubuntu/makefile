@@ -14,6 +14,7 @@ SRC      = $(wildcard src/*.c)
 OBJ = $(patsubst src/%.c, obj/%.o, $(SRC))
 
 all:$(TARGET)
+	@echo using user-defined makefile
 $(TARGET): $(OBJ)
 	$(CXX) $(CFLAGS) $(INCLUDE) $(LDFLAGS) $(OBJ) -o $(TARGET) 
 	
@@ -22,6 +23,6 @@ obj/%.o: src/%.c
 	$(CXX) $(CFLAGS) $(INCLUDE) -o $@ -c $<
 
 clean:
-	rm -rf obj/* $(TARGET)
+	rm -rf obj/* $(TARGET) $(TARGET).exe
 
 new: clean $(TARGET) 
