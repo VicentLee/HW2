@@ -26,3 +26,5 @@ clean:
 	rm -rf obj/* $(TARGET) $(TARGET).exe
 
 new: clean $(TARGET) 
+
+#comment 1 by ubuntu
