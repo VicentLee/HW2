@@ -255,8 +255,8 @@ int main(int argc, char * const * argv) {
 //  char *const* argv = char *const argv[]  ---- an array of const p
 
 //	/*turn off buffer for eclipse on windows*/
-//	setbuf(stdout, NULL);
-//	setbuf(stderr, NULL);
+	setbuf(stdout, NULL);
+	setbuf(stderr, NULL);
 
 	long base; 						/* to hold output base */
 	char buffer[MAXLENGTH]; 		/* to hold string */
