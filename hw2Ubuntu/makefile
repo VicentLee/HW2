@@ -26,3 +26,4 @@ clean:
 	rm -rf obj/* $(TARGET) $(TARGET).exe
 
 new: clean $(TARGET) 
+hello world
