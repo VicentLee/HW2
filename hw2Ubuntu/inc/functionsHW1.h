@@ -1,14 +1,15 @@
 /*
  * functionsHW1.h
  *	contain functions of HW1 and relative global variables
- *  Created on: Sep 12, 2017
+ *  	Created on: Sep 12, 2017
  *      Author: lizhi
  */
 
 #ifndef FUNCTIONSHW1_H_
 #define FUNCTIONSHW1_H_
 
-#include <stdio.h> // for type FILE
+#include <stdio.h>  // for type FILE
+
 /*global MACROS*/
 #define COUNT 16    /* number of hex digits to display */
 #define DECIMAL 10  /* to indicate base 10 */
@@ -44,11 +45,6 @@ long getaline (char *, long);
 void hexout(unsigned long number, FILE * stream);
 
 
-///* define the keyword "NULL" as 0 */
-//#ifdef NULL
-//#undef NULL
-//#endif
-//#define NULL 0
 
 #endif /* FUNCTIONSHW1_H_ */
 
