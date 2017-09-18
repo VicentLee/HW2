@@ -5,14 +5,13 @@
  cs12xzz
  Assignment Two
 
- File Name:      hw2.c
+ File Name:      main.c
  Description:    This program reads strings and integers from the user,
- processes them, and prints them back to the user.  Program
- terminates when user enters ^D.  At termination, program
- outputs sizes of various types of C/C++ pre defined types.
-
+				 processes them, and prints them back to the user.  Program
+				 terminates when user enters ^D.  At termination, program
+				 outputs sizes of various types of C/C++ pre defined types.
+				
  ****************************************************************************/
-// adjustment for ubuntu
 /* declare fputc/fgetc */
 #include <stdio.h>
 #include <getopt.h>
@@ -20,10 +19,10 @@
 #include "functionsHW1.h"
 
 /* messages */
-const char CAUSED_OVERFLOW[] = "caused overflow!!\n";
-const char DIGIT_STRING[] = "digit ";
-const char REENTER_NUMBER[] = "\nPlease reenter number: ";
-const char OUT_OF_RANGE[] = " out of range!!!\n";
+const char CAUSED_OVERFLOW[] 	= "caused overflow!!\n";
+const char DIGIT_STRING[] 		= "digit ";
+const char REENTER_NUMBER[] 	= "\nPlease reenter number: ";
+const char OUT_OF_RANGE[] 		= " out of range!!!\n";
 
 /* debug messages */
 const char DEBUG_GETALINE[] =
@@ -53,7 +52,6 @@ static long debug_on = FALSE;
  --------------------------------------------------------------------------*/
 long decin(void) {
 
-//	printf("entering decin\n");
 	/*variables for buffer */
 	char string_buff[MAXLENGTH] = "";
 	const char err_msg[] = " is not a valid digit input\n";
@@ -94,7 +92,7 @@ long decin(void) {
 
 		/*loop until got a valid input (digits sequence end with '\0') */
 		for(int i=0; i<strlength; i++) {
-//			printf("entering for loop to get a number\n");
+
 			character = string_buff[i];
 
 			/*got an valid digit*/
@@ -121,7 +119,6 @@ long decin(void) {
 			}else {
 
 				flag_nonvalid_input++;
-				fprintf(stderr,"\ninvalid digit ASCII #[%d] found!\n",character);
 				/*handle erroneous user input*/
 				digiterror(character, &number, err_msg);
 				break; //break for loop
@@ -132,7 +129,7 @@ long decin(void) {
 
 		/*input is valid*/
 		if (flag_nonvalid_input == 0) {
-			printf("\nwe got a valid number [%ld] and out while loop\n",number);
+			fprintf(stderr,"\nwe got a valid number [%ld] and out while loop\n",number);
 			break;	// break while loop
 		}
 
@@ -156,15 +153,6 @@ long decin(void) {
  --------------------------------------------------------------------------*/
 void digiterror(int character, long * sum, const char * message) {
 
-
-
-//	fprintf(stderr,"entering digiterror() ");
-//	fprintf(stderr,"with invalid character[%d] and number is [%ld]\n",
-//								character, 			*sum);
-
-	/* handle error and clear the stdin*/
-//	clrbuf(character);
-
 	/* reset sum */
 	*sum = 0;
 
@@ -172,7 +160,6 @@ void digiterror(int character, long * sum, const char * message) {
 	writeline(DIGIT_STRING, stderr);
 	fputc(character, stderr);
 	writeline(message, stderr);
-//	fflush(stdout);
 
 	writeline(REENTER_NUMBER, stderr);
 }
@@ -190,6 +177,7 @@ void digiterror(int character, long * sum, const char * message) {
 						 ignored.  Since this is routine accepts input,
 						 if EOF is detected EOF is passed back to the main
 						 program.
+
  Input:                  message:  the destination array where input is stored.
 						 maxlength:  the maximum number of non-NULL characters
 						 allowed in the string + 1 for the NULL char.
@@ -215,7 +203,7 @@ long getaline(char * message, long maxlength) {
 			if (character == '\n') {
 
 				message[index] = '\0';
-//				fprintf(stderr,"%s %d]\n",DEBUG_GETALINE,index);
+				//fprintf(stderr,"%s %d]\n",DEBUG_GETALINE,index);
 				return index;
 			} else {
 				/*put character in when range 0 ~ MAXLENGTH-2*/
@@ -231,10 +219,10 @@ long getaline(char * message, long maxlength) {
 		/*input size is larger than MAXLENGTH */
 		} else {
 
-//			fprintf(stderr,"input is too long!\n");
+			//fprintf(stderr,"input is too long!\n");
 			clrbuf(character);
 			message[MAXLENGTH - 1] = '\0';
-//			fprintf(stderr,"output message is [%s]\n",message);
+			//fprintf(stderr,"output message is [%s]\n",message);
 			return (MAXLENGTH - 1);
 		}
 	}
@@ -252,11 +240,11 @@ long getaline(char * message, long maxlength) {
  Input:                  None.
  --------------------------------------------------------------------------*/
 int main(int argc, char * const * argv) {
-//  char *const* argv = char *const argv[]  ---- an array of const p
+	//char *const* argv = char *const argv[]  ---- an array of const p
 
-//	/*turn off buffer for eclipse on windows*/
-//	setbuf(stdout, NULL);
-//	setbuf(stderr, NULL);
+	/*turn off buffer for eclipse on windows*/
+	setbuf(stdout, NULL);
+	setbuf(stderr, NULL);
 
 	long base; 						/* to hold output base */
 	char buffer[MAXLENGTH]; 		/* to hold string */
@@ -273,8 +261,6 @@ int main(int argc, char * const * argv) {
 
 	/* check command line options for debug display */
 	/* initialize debug states */
-	// https://www.gnu.org/software/libc/manual/
-	// html_node/Example-of-Getopt.html#Example-of-Getopt
 	while ((option = getopt(argc, argv, "x")) != EOF) {
 		switch (option) {
 		case 'x':
@@ -284,12 +270,6 @@ int main(int argc, char * const * argv) {
 		printf("DEBUG STATUS %ld\n",debug_on);
 	}
 
-
-//	writeline("\nPlease enter a decimal number:  ", stdout);
-//	number = decin();
-//
-//	writeline("Number entered is:  ", stdout);
-//	decout(number, stdout);
 
 	/* infinite loop until user enters ^D */
 	while (1) {
