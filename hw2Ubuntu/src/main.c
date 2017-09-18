@@ -133,7 +133,6 @@ long decin(void) {
 			break;	// break while loop
 		}
 
-		fprintf(stderr,"\ndebug_decin_for_loop_leaving number is %ld\n", number);
 
 	} //end of while(1)
 	return number;
